@@ -1,0 +1,31 @@
+.main-title {
+  font-size: 2rem;
+}
+
+.w-35 {
+  width: 35% !important;
+}
+
+.add-task-title {
+  font-size: 1.5rem;
+}
+
+.image {
+  width: 6rem;
+  height: 6rem;
+  opacity: 0.6;
+}
+
+.h {
+  height: 25rem !important;
+}
+
+table {
+  table-layout: fixed;
+  width:100%
+}
+td {
+  word-wrap:break-word;
+}
+
+

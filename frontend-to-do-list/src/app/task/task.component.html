@@ -1,0 +1,63 @@
+<div class="text-primary font-weight-bold text-center mt-3 main-title">TASK LIST WEB-APPLICATION</div>
+<div class="text-primary small text-center mb-4 font-weight-bold">developed by AntonSk98</div>
+
+
+
+<div class="d-flex justify-content-between mt-2 mb-4 h">
+  <div class="w-75 ml-2">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col" class="text-secondary" style="width: 1rem !important;">#</th>
+        <th scope="col" class="text-secondary">Date</th>
+        <th scope="col" class="text-secondary">Title</th>
+        <th scope="col" class="text-secondary">Description</th>
+        <th score="col" class="text-secondary">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let task of tasks | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          {{ task.date }}
+        </td>
+        <td>{{ task.title }}</td>
+        <td>{{ task.description }}</td>
+        <td>
+          <div class="d-flex justify-content-start align-items-center">
+            <button class="btn btn-sm btn-outline-secondary mr-2" (click)="getTaskById(task.id)">Update</button>
+            <span> | </span>
+            <button class="btn btn-sm btn-outline-secondary ml-2" (click)="deleteTaskById(task.id)">Delete</button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div *ngIf="tasks?.length===0" class="text-center font-weight-bold text-secondary">No tasks are available now! Add the first one!</div>
+  </div>
+  <form class="ml-2 mr-2 mt-1">
+    <div class="text-center text-primary add-task-title font-weight-bold"><div>Stay busy, add a new task!</div></div>
+    <div class="d-flex justify-content-between mt-2 align-items-end"><label for="date" class="w-50 text-secondary font-weight-bold">Date:</label><input type="text" [(ngModel)]="newTask.date" id="date" name="date" placeholder="dd.mm.yy" class=form-control></div>
+    <div class="d-flex justify-content-between mt-2 align-items-end"><label for="title" class="w-50 text-secondary font-weight-bold">Title:</label><input type="text" [(ngModel)]="newTask.title" id="title" name="title" placeholder="enter title" class=form-control></div>
+    <div class="d-flex justify-content-between mt-2 align-items-end"><label for="description" class="w-50 text-secondary font-weight-bold">Description:</label> <input type="text" [(ngModel)]="newTask.description" name="description" id="description" placeholder="enter description" class=form-control></div>
+    <div class="text-center mt-1"><button (click)="saveTask()" class="btn btn-outline-secondary">
+      <span *ngIf="!isUpdated">Add task</span>
+      <span *ngIf="isUpdated">Edit task</span>
+    </button></div>
+  </form>
+</div>
+
+
+<div class="ml-2 fixed-bottom">
+  <hr>
+  <ngb-pagination *ngIf="tasks?.length"
+    [(page)]="page"
+    [pageSize]="pageSize"
+    [collectionSize]="tasks?.length"></ngb-pagination>
+</div>
+
+
+
+
+
+
